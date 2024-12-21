@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB; /* Sky blue background */
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px;
+            color: #333;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            width: 50%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section {
+            width: 60%;
+        }
+
+        .prediction-section {
+            width: 35%;
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input, select {
+            width: 80%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            background-color: #388E3C; /* Dark green */
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+            width: 80%;
+            border-radius: 4px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2C6E2F;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success {
+            color: green;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .prediction-box {
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .disclaimer {
+            color: red;
+            font-size: 10px;
+        }
+
+        .prediction-box span {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Laptop Information Form</h2>
+
+    <div class="form-container">
+        <!-- Form Section -->
+        <div class="form-section">
+            <form action="/predict" method="POST" id="laptopForm">
+                <label for="Inches">Inches :</label>
+                <input type="text" id="Inches" name="Inches" required>
+
+                <label for="Ram">RAM :</label>
+                <input type="text" id="Ram" name="Ram" required>
+
+                <label for="Weight">Weight :</label>
+                <input type="text" id="Weight" name="Weight" required>
+
+                <label for="MemoryGB">Memory GB:</label>
+                <input type="text" id="MemoryGB" name="MemoryGB" required>
+
+                <label for="Company">Brand of the Laptop:</label>
+                <select id="Company" name="Company" required>
+                    <option value="choose">Choose</option>
+                    <option value="Apple">Apple</option>
+                    <option value="HP">HP</option>
+                    <option value="Acer">Acer</option>
+                    <option value="Asus">Asus</option>
+                    <option value="Dell">Dell</option>
+                    <option value="Lenovo">Lenovo</option>
+                    <option value="MSI">MSI</option>
+                    <option value="Toshiba">Toshiba</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="TypeName">Type of Laptop :</label>
+                <select id="TypeName" name="TypeName" required>
+                    <option value="choose">Choose</option>
+                    <option value="Ultrabook">Ultrabook</option>
+                    <option value="Notebook">Notebook</option>
+                    <option value="Netbook">Netbook</option>
+                    <option value="Gaming">Gaming</option>
+                    <option value="2 in 1 Convertible">2 in 1 Convertible</option>
+                    <option value="Workstation">Workstation</option>
+                </select>
+
+                <label for="OpSys">Operating System :</label>
+                <select id="OpSys" name="OpSys" required>
+                    <option value="choose">Choose</option>
+                    <option value="macOS">macOS</option>
+                    <option value="No OS">No OS</option>
+                    <option value="Windows 10">Windows 10</option>
+                    <option value="Linux">Linux</option>
+                    <option value="Chrome OS">Chrome OS</option>
+                    <option value="Windows 7">Windows 7</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="ScreenType">Screen Type of the Laptop:</label>
+                <select id="ScreenType" name="ScreenType" required>
+                    <option value="choose">Choose</option>
+                    <option value="IPS Panel Retina Display">IPS Panel Retina Display</option>
+                    <option value="Full HD">Full HD</option>
+                    <option value="1366x768">1366x768</option>
+                    <option value="IPS Panel Full HD">IPS Panel Full HD</option>
+                    <option value="Quad HD+">Quad HD+</option>
+                    <option value="IPS Panel">IPS Panel</option>
+                    <option value="Touchscreen">Touchscreen</option>
+                    <option value="IPS Panel 4K Ultra HD">IPS Panel 4K Ultra HD</option>
+                    <option value="4K Ultra HD">4K Ultra HD</option>
+                    <option value="1600x900">1600x900</option>
+                    <option value="IPS Panel Quad HD+">IPS Panel Quad HD+</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="TouchScreen">TouchScreen (Yes/No):</label>
+                <select id="TouchScreen" name="TouchScreen" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+
+                <label for="CpuModel">CPU Model:</label>
+                <select id="CpuModel" name="CpuModel" required>
+                    <option value="choose">Choose</option>
+                    <option value="Intel i5">Intel i5</option>
+                    <option value="Intel i7">Intel i7</option>
+                    <option value="AMD 9420">AMD 9420</option>
+                    <option value="Intel i3">Intel i3</option>
+                    <option value="Intel N3350">Intel N3350</option>
+                    <option value="Intel N4200">Intel N4200</option>
+                    <option value="Intel N3060">Intel N3060</option>
+                    <option value="Intel N3710">Intel N3710</option>
+                    <option value="Intel N3050">Intel N3050</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="GpuBrand">GPU Brand:</label>
+                <select id="GpuBrand" name="GpuBrand" required>
+                    <option value="choose">Choose</option>
+                    <option value="Intel Iris">Intel Iris</option>
+                    <option value="Intel HD">Intel HD</option>
+                    <option value="AMD Radeon">AMD Radeon</option>
+                    <option value="Nvidia GeForce">Nvidia GeForce</option>
+                    <option value="Intel UHD">Intel UHD</option>
+                    <option value="Nvidia Quadro">Nvidia Quadro</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <input type="submit" value="Let's see the Price!">
+            </form>
+        </div>
+
+        <!-- Prediction Section -->
+        <div class="prediction-section">
+            <h3>Predicted Price</h3>
+            <div class="prediction-box">
+                <span id="predictionValue">{{prediction_text}}</span>
+            </div>
+            <br>
+            <div class="diclaimer">
+            The prediction is a rough figure to give an idea of the price variation with specifications. 
+            Please checkout other websites for offers and best prices!!</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("laptopForm").onsubmit = function(e) {
+            var company = document.getElementById("Company").value;
+            var typeName = document.getElementById("TypeName").value;
+            var cpuModel = document.getElementById("CpuModel").value;
+            var gpuBrand = document.getElementById("GpuBrand").value;
+
+            if (company === "choose" || typeName === "choose" || cpuModel === "choose" || gpuBrand === "choose") {
+                e.preventDefault(); 
+                document.getElementById("companyError").style.display = "block"; 
+            } else {
+                document.getElementById("companyError").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
