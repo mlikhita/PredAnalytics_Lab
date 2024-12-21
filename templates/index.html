@@ -16,7 +16,7 @@
 
      <!-- Action is where the data is sent. In our case, predict page.
      If action is omitted, it assumed to be the current page -->
-    <form action="{{ url_for('predict')}}"method="post">
+    <form action="/predict"method="post">
     	<input type="text" name="percent biking" placeholder="Percent population biking" required="required" /><br>
         <input type="text" name="percent smoking" placeholder="Percent population smoking" required="required" /><p>
 
