@@ -108,35 +108,35 @@ def upload():
     return render_template('upload.html')
 
 
-# @app.route('/live')
-# def live():
-#     return render_template('live.html')
+@app.route('/live')
+def live():
+    return render_template('live.html')
 
-# def gen():
-#     camera = cv2.VideoCapture(2)  # Open the webcam
-#     while True:
-#         success, frame = camera.read()
-#         if not success:
-#             break
-#         processed_frame, emotion_label, elapsed, comical_message = detect_emotion(frame)
-#         _, buffer = cv2.imencode('.jpg', processed_frame)
-#         frame_bytes = buffer.tobytes()
+def gen():
+    camera = cv2.VideoCapture(2)  # Open the webcam
+    while True:
+        success, frame = camera.read()
+        if not success:
+            break
+        processed_frame, emotion_label, elapsed, comical_message = detect_emotion(frame)
+        _, buffer = cv2.imencode('.jpg', processed_frame)
+        frame_bytes = buffer.tobytes()
         
-#         yield (b'--frame\r\n'
-#                b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
 
-# @app.route('/video_feed')
-# def video_feed():
-#     return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route("/process_frame", methods=["POST"])
-def process_frame():
-    file = request.files["frame"]
-    npimg = np.frombuffer(file.read(), np.uint8)
-    frame = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
+# @app.route("/process_frame", methods=["POST"])
+# def process_frame():
+#     file = request.files["frame"]
+#     npimg = np.frombuffer(file.read(), np.uint8)
+#     frame = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
 
-    processed_image, emotion_label, elapsed, comical_message = detect_emotion(frame)
-    return jsonify({"emotion": emotion_label, "time_ms": elapsed, "comical_message":comical_message})
+#     processed_image, emotion_label, elapsed, comical_message = detect_emotion(frame)
+#     return jsonify({"emotion": emotion_label, "time_ms": elapsed, "comical_message":comical_message})
 
 if __name__ == '__main__':
     app.run()
