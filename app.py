@@ -112,7 +112,7 @@ def live():
     return render_template('live.html')
 
 def gen():
-    camera = cv2.VideoCapture(0)  # Open the webcam
+    camera = cv2.VideoCapture(2)  # Open the webcam
     while True:
         success, frame = camera.read()
         if not success:
