@@ -2,6 +2,7 @@ opencv-python
 Flask
 numpy
 PTL
-tensorflow
+keras
 pickle4
 deepface
+gunicorn
