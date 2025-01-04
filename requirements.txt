@@ -3,5 +3,5 @@ Flask
 numpy
 PTL
 tensorflow
-pickle
+pickle4
 deepface
