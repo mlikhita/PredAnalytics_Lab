@@ -1,0 +1,12 @@
+cv2
+Flask
+numpy
+PTL
+io
+base64
+tensorflow
+time
+random
+json
+pickle
+deepface
