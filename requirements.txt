@@ -1,8 +1,8 @@
 opencv-python
+deepface
+tf_keras
 Flask
 numpy
 PTL
-tensorflow
 pickle4
-deepface
 gunicorn
