@@ -2,8 +2,6 @@ opencv-python
 Flask
 numpy
 PTL
-io
-base64
 tensorflow
 time
 random
