@@ -3,7 +3,7 @@ from google import genai
 import os
 
 # Initialize the API client
-client = genai.Client(api_key=os.getenv['GOOGLE_GEMINI_API_KEY'])
+client = genai.Client(api_key=os.getenv("GOOGLE_GEMINI_API_KEY"))
 
 # Streamlit App UI
 st.title("SWOT Analysis Generator")
